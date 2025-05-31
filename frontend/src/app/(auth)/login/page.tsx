@@ -3,17 +3,22 @@ import Input from "@/ui/input";
 import React, {useState} from "react";
 import AuthLayout from "../AuthLayout";
 import {useLogin} from "@/hooks/api/useLogin";
+import {toast} from "sonner";
 
 const Login = () => {
   const {mutate, isPending, error} = useLogin();
 
   const [login, setLogin] = useState({
-    email: "",
-    senha: "",
+    userEmail: "",
+    password: "",
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!login.userEmail.trim() || !login.password.trim()) {
+      toast.error("Credenciais inválidas");
+      return;
+    }
     mutate(login);
   };
 
@@ -26,20 +31,25 @@ const Login = () => {
     };
 
   return (
-    <AuthLayout type="login" onSubmit={handleSubmit}>
+    <AuthLayout
+      type="login"
+      onSubmit={handleSubmit}
+      isLoading={isPending}
+      isError={error}
+    >
       <Input
         intent={"auth"}
-        value={login.email}
+        value={login.userEmail}
         className="py-3"
-        onChange={handleChange("email")}
+        onChange={handleChange("userEmail")}
         type="email"
         placeholder="Email"
       />
       <Input
         intent={"auth"}
-        value={login.senha}
+        value={login.password}
         className="py-3"
-        onChange={handleChange("senha")}
+        onChange={handleChange("password")}
         type="password"
         placeholder="Senha"
       />

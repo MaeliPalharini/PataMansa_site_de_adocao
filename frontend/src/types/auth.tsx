@@ -1,11 +1,11 @@
 export type SignUpData = {
-  nome: string;
-  email: string;
-  senha: string;
+  name: string;
+  userEmail: string;
+  password: string;
   role: string;
 };
 
 export type LoginData = {
-  email: string;
-  senha: string;
+  userEmail: string;
+  password: string;
 };

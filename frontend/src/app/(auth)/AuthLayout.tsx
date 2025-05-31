@@ -4,18 +4,30 @@ import Button from "@/ui/button";
 import {motion} from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import {useEffect} from "react";
 import {FcGoogle} from "react-icons/fc";
+import {toast} from "sonner";
 
 export default function AuthLayout({
   children,
   type,
   onSubmit,
+  isLoading,
+  isError,
 }: {
   children: React.ReactNode;
   type: "login" | "signup";
   onSubmit?: (e: React.FormEvent<HTMLFormElement>) => void;
+  isLoading?: boolean;
+  isError?: Error | null;
 }) {
   const scaleIn = useScaleIn();
+
+  useEffect(() => {
+    if (isError) {
+      toast.error("Credenciais inválidas");
+    }
+  }, [isError]);
 
   return (
     <div className="w-full min-h-screen bg-[var(--brown-fosco)] h-full flex overflow-x-hidden justify-center items-center">
@@ -47,15 +59,27 @@ export default function AuthLayout({
               {type === "login" ? "Bem-vindo de volta!" : "Crie sua conta"}
             </h2>
 
-            <form
-              onSubmit={onSubmit}
-              className="flex flex-col gap-4 items-center w-full"
-            >
-              {children}
-
-              <Button intent={"secondVar"} type="submit">
-                {type === "login" ? "Entrar" : "Cadastrar"}
-              </Button>
+            <form onSubmit={onSubmit}>
+              <fieldset
+                disabled={isLoading}
+                className="flex flex-col gap-4 items-center w-full"
+              >
+                {children}
+                <Button
+                  intent={"secondVar"}
+                  className={isLoading ? "opacity-50 hover:brightness-100" : ""}
+                  type="submit"
+                  disabled={isLoading}
+                >
+                  {isLoading
+                    ? type === "login"
+                      ? "Entrando..."
+                      : "Cadastrando..."
+                    : type === "login"
+                    ? "Entrar"
+                    : "Cadastrar"}
+                </Button>
+              </fieldset>
             </form>
 
             <p className="font-semibold text-white">Ou</p>
