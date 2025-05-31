@@ -13,9 +13,10 @@ export default function AuthLayout({
 }: {
   children: React.ReactNode;
   type: "login" | "signup";
-  onSubmit?: () => void;
+  onSubmit?: (e: React.FormEvent<HTMLFormElement>) => void;
 }) {
   const scaleIn = useScaleIn();
+
   return (
     <div className="w-full min-h-screen bg-[var(--brown-fosco)] h-full flex overflow-x-hidden justify-center items-center">
       <section className="relative flex items-center justify-center min-h-[630px] h-full max-w-[1150px] w-full">
@@ -32,24 +33,33 @@ export default function AuthLayout({
             src="/signup.png"
             width={800}
             height={800}
-            alt="w-full h-full "
+            alt="w-full h-full"
           />
         </div>
 
-        <div className="min-[500px]:max-w-[400px] w-full flex justify-center items-center">
+        <div className="min-[500px]:w-auto w-full flex justify-center items-center">
           <motion.div
             ref={scaleIn.ref}
             {...scaleIn.animationProps}
-            className="w-full flex max-[500px]:min-h-screen flex-col gap-4 justify-center items-center backdrop-blur-[1px] px-2 py-6 backdrop-brightness-80 bg-[var(--light-brown)]/50 backdrop-saturate-150 min-[500px]:rounded-3xl shadow-lg"
+            className="w-full flex max-[500px]:min-h-screen flex-col gap-2 justify-center items-center backdrop-blur-[1px] min-[500px]:px-10 max-[500px]:px-2 py-6 backdrop-brightness-80 bg-[var(--light-brown)]/50 backdrop-saturate-150 min-[500px]:rounded-3xl shadow-lg"
           >
             <h2 className="text-white text-3xl font-semibold py-4">
               {type === "login" ? "Bem-vindo de volta!" : "Crie sua conta"}
             </h2>
-            {children}
-            <Button intent={"secondVar"} onClick={onSubmit}>
-              {type === "login" ? "Entrar" : "Cadastrar"}
-            </Button>
+
+            <form
+              onSubmit={onSubmit}
+              className="flex flex-col gap-4 items-center w-full"
+            >
+              {children}
+
+              <Button intent={"secondVar"} type="submit">
+                {type === "login" ? "Entrar" : "Cadastrar"}
+              </Button>
+            </form>
+
             <p className="font-semibold text-white">Ou</p>
+
             <Button
               intent={"secondVar"}
               className="flex gap-3 justify-center items-center"
@@ -59,6 +69,7 @@ export default function AuthLayout({
                 ? "Entrar com Google"
                 : "Cadastre-se com Google"}
             </Button>
+
             <p className="text-center text-sm ">
               {type === "login" ? "Ainda não tem conta?" : "Já tem uma conta?"}{" "}
               <Link

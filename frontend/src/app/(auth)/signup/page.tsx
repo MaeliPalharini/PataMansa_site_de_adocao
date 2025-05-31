@@ -2,13 +2,24 @@
 import React, {useState} from "react";
 import AuthLayout from "../AuthLayout";
 import Input from "@/ui/input";
+import {useSignup} from "@/hooks/api/useRegister";
+import Button from "@/ui/button";
 
 const SignUp = () => {
+  const {mutate, isPending, error} = useSignup();
+
   const [signUp, setSignUp] = useState({
-    name: "",
+    nome: "",
     email: "",
-    password: "",
+    senha: "",
+    role: "",
   });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    mutate(signUp);
+    console.log(signUp);
+  };
 
   const handleChange =
     (field: keyof typeof signUp) =>
@@ -19,17 +30,44 @@ const SignUp = () => {
       }));
     };
 
+  const handleSelectRole = (role: "adotante" | "anunciante") => {
+    setSignUp((prev) => ({
+      ...prev,
+      role,
+    }));
+  };
+
   return (
-    <AuthLayout type="signup">
+    <AuthLayout type="signup" onSubmit={handleSubmit}>
+      <div className="flex gap-5 justify-center items-center">
+        <Button
+          intent={signUp.role === "adotante" ? "first" : "second"}
+          type="button"
+          onClick={() => handleSelectRole("adotante")}
+          className="text-sm font-bold"
+        >
+          Adotar um pet
+        </Button>
+        <Button
+          intent={signUp.role === "anunciante" ? "first" : "second"}
+          type="button"
+          onClick={() => handleSelectRole("anunciante")}
+          className="text-sm font-bold"
+        >
+          Doar um pet
+        </Button>
+      </div>
       <Input
         intent={"second"}
-        value={signUp.name}
-        onChange={handleChange("name")}
+        className="py-3"
+        value={signUp.nome}
+        onChange={handleChange("nome")}
         type="text"
         placeholder="Nome"
       />
       <Input
         intent={"second"}
+        className="py-3"
         value={signUp.email}
         onChange={handleChange("email")}
         type="email"
@@ -37,8 +75,9 @@ const SignUp = () => {
       />
       <Input
         intent={"second"}
-        value={signUp.password}
-        onChange={handleChange("password")}
+        className="py-3"
+        value={signUp.senha}
+        onChange={handleChange("senha")}
         type="password"
         placeholder="Senha"
       />

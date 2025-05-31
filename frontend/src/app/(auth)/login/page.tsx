@@ -2,12 +2,20 @@
 import Input from "@/ui/input";
 import React, {useState} from "react";
 import AuthLayout from "../AuthLayout";
+import {useLogin} from "@/hooks/api/useLogin";
 
 const Login = () => {
+  const {mutate, isPending, error} = useLogin();
+
   const [login, setLogin] = useState({
     email: "",
-    password: "",
+    senha: "",
   });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    mutate(login);
+  };
 
   const handleChange =
     (field: keyof typeof login) => (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -18,18 +26,20 @@ const Login = () => {
     };
 
   return (
-    <AuthLayout type="login">
+    <AuthLayout type="login" onSubmit={handleSubmit}>
       <Input
         intent={"second"}
         value={login.email}
+        className="py-3"
         onChange={handleChange("email")}
         type="email"
         placeholder="Email"
       />
       <Input
         intent={"second"}
-        value={login.password}
-        onChange={handleChange("password")}
+        value={login.senha}
+        className="py-3"
+        onChange={handleChange("senha")}
         type="password"
         placeholder="Senha"
       />
