@@ -1,20 +1,20 @@
-"use client";
-import Image from "next/image";
+import {usePetInfo} from "@/hooks/api/usePetInfo";
 import Button from "@/ui/button";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function SimpleSlider() {
-  const sliderstest = [
-    {name: "Kiwi", description: "raca", age: 10, img: "/defaultdog.png"},
-    {name: "Kiwi", description: "raca", age: 10, img: "/defaultdog.png"},
-    {name: "Kiwi", description: "raca", age: 10, img: "/defaultdog.png"},
-    {name: "Kiwi", description: "raca", age: 10, img: "/defaultdog.png"},
-  ];
+  const {data: pets, isLoading, error} = usePetInfo();
+
+  if (isLoading) return <p>Carregando pets...</p>;
+  if (error) return <p>Erro ao carregar pets.</p>;
+  if (!pets || pets.length === 0) return <p>Nenhum pet encontrado.</p>;
 
   return (
     <div className="w-full max-w-[1000px] max-h-[500px] py-20 max-[800px]:px-2 flex justify-center items-center">
       <div className="overflow-y-auto h-full flex justify-center scroll-container">
         <div className="flex flex-wrap gap-5 w-full items-center justify-center">
-          {sliderstest.map((item, index) => (
+          {pets.map((item: any, index: number) => (
             <div
               key={index}
               className="bg-[var(--light-yellow)] h-[330px] w-[200px] flex flex-col justify-center items-center shadow rounded overflow-hidden"
@@ -22,7 +22,7 @@ export default function SimpleSlider() {
               <div className="relative  h-[65%] w-full">
                 <Image
                   src={item.img ?? "/defaultdog.png"}
-                  alt=""
+                  alt={`Foto do ${item.name}`}
                   fill
                   className="object-cover"
                 />
@@ -34,9 +34,11 @@ export default function SimpleSlider() {
                 </h3>
                 <p>Raça: {item.description}</p>
                 <p>Idade: {item.age}</p>
-                <Button intent="fourth" className="text-sm font-bold">
-                  Ver detalhes
-                </Button>
+                <Link href={`/adotar/detalhes/${item.id}`}>
+                  <Button intent="fourth" className="text-sm font-bold">
+                    Ver detalhes
+                  </Button>
+                </Link>
               </div>
             </div>
           ))}
