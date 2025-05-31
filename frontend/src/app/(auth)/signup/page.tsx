@@ -58,7 +58,7 @@ const SignUp = () => {
         </Button>
       </div>
       <Input
-        intent={"second"}
+        intent={"auth"}
         className="py-3"
         value={signUp.nome}
         onChange={handleChange("nome")}
@@ -66,7 +66,7 @@ const SignUp = () => {
         placeholder="Nome"
       />
       <Input
-        intent={"second"}
+        intent={"auth"}
         className="py-3"
         value={signUp.email}
         onChange={handleChange("email")}
@@ -74,7 +74,7 @@ const SignUp = () => {
         placeholder="Email"
       />
       <Input
-        intent={"second"}
+        intent={"auth"}
         className="py-3"
         value={signUp.senha}
         onChange={handleChange("senha")}

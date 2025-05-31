@@ -28,7 +28,7 @@ const Login = () => {
   return (
     <AuthLayout type="login" onSubmit={handleSubmit}>
       <Input
-        intent={"second"}
+        intent={"auth"}
         value={login.email}
         className="py-3"
         onChange={handleChange("email")}
@@ -36,7 +36,7 @@ const Login = () => {
         placeholder="Email"
       />
       <Input
-        intent={"second"}
+        intent={"auth"}
         value={login.senha}
         className="py-3"
         onChange={handleChange("senha")}

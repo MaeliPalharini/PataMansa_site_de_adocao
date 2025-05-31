@@ -12,6 +12,7 @@ const inputVariants = cva(
         second:
           "text-black focus:bg-[var(--light-yellow)]/75 bg-[var(--light-yellow)]/50",
         formulario: "border rounded px-3 py-2",
+        auth: " text-black focus:bg-[var(--light-yellow)]/75 bg-[var(--light-yellow)]/50 rounded px-3 py-2",
       },
     },
   }
