@@ -25,5 +25,4 @@ public class AuthController {
         LoginResponse token = authenticationService.login(request);
         return ResponseEntity.ok(token.getToken());
     }
-
 }
