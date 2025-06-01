@@ -47,7 +47,7 @@ const OurPets = () => {
           {...fadeIn[0].animationProps}
           className=" max-[400px]:text-wrap text-center max-[500px]:text-5xl max-[600px]:text-6xl min-[600px]:text-7xl font-extrabold text-nowrap tracking-wide text-[var(--brown)]"
         >
-          Our Pets
+          Nossos Pets
         </motion.h2>
         <div className="flex gap-6 flex-wrap justify-center items-center">
           {pets(1, "bg-[var(--dark-yellow)]", "fourth")}

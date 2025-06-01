@@ -1,16 +1,16 @@
 import {useQuery} from "@tanstack/react-query";
 import {getPetById, getPets} from "@/services/api/pets/getPets";
 
-export const usePetInfo = () => {
+export const useUserInfo = () => {
   return useQuery({
-    queryKey: ["pets"],
+    queryKey: ["user"],
     queryFn: getPets,
   });
 };
 
-export const usePetById = (id: string) => {
+export const useUserById = (id: string) => {
   return useQuery({
-    queryKey: ["pet", id],
+    queryKey: ["user", id],
     queryFn: () => getPetById(id),
     enabled: !!id,
     staleTime: Infinity,

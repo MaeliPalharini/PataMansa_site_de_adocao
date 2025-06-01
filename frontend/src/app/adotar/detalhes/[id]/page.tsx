@@ -5,14 +5,13 @@ import {usePetById} from "@/hooks/api/usePetInfo";
 import Button from "@/ui/button";
 import Image from "next/image";
 import React, {useState} from "react";
-import {useParams} from "next/navigation";
 import ProtectedRoute from "@/components/ProtectedRoute";
+import {useRouteParam} from "@/hooks/route/useRouteParams";
 
 const Detalhes = () => {
-  const params = useParams();
-  const id = params.id as string;
+  const petId = useRouteParam("id");
 
-  const {data: pet, isLoading, error} = usePetById(id);
+  const {data: pet, isLoading, error} = usePetById(petId);
 
   const [isOpen, setIsOpen] = useState(false);
 

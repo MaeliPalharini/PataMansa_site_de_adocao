@@ -8,13 +8,12 @@ import {MdLogout} from "react-icons/md";
 const Navbar = () => {
   const links = [
     {name: "Home", href: "/"},
-    {name: "About", href: "/about"},
-    {name: "Contact", href: "/contact"},
+    {name: "Sobre nós", href: "/sobre"},
   ];
 
   const authLinks = [
-    {name: "Sign Up", href: "/signup"},
-    {name: "Login", href: "/login"},
+    {name: "Cadastre-se", href: "/signup"},
+    {name: "Entrar", href: "/login"},
   ];
 
   return (

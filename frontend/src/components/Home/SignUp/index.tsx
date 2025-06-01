@@ -1,11 +1,9 @@
 "use client";
 import {useFadeIn} from "@/hooks/ui/useFadeIn";
-import Button from "@/ui/button";
-import Input from "@/ui/input";
 import {motion} from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
-import {FcGoogle} from "react-icons/fc";
 
 const SignUp = () => {
   const fadeIn = [
@@ -15,29 +13,10 @@ const SignUp = () => {
     useFadeIn(),
     useFadeIn(),
     useFadeIn(),
-    useFadeIn(),
-    useFadeIn(),
-    useFadeIn(),
   ];
 
-  const input = (
-    n: number,
-    intent: "first",
-    placeholder: string,
-    type: string
-  ) => {
-    return (
-      <Input
-        ref={fadeIn[n].ref}
-        {...fadeIn[n].animationProps}
-        intent={intent}
-        placeholder={placeholder}
-        type={type}
-      />
-    );
-  };
   return (
-    <section className="items-center flex justify-center min-h-screen w-full bg-[var(--brown)] px-4">
+    <section className="items-center flex justify-center min-h-screen w-full bg-[var(--brown)] ">
       <div className="max-w-[1200px] flex w-full min-h-screen min-[1050px]:justify-center items-center relative max-[1050px]:justify-between max-[1050px] max-[1050px]:flex-col">
         <div className="flex max-w-[400px] items-center justify-center">
           <div className="flex flex-col w-full max-[1050px]:items-center min-[1050px]:items-start justify-center max-[1050px]:text-center gap-y-8">
@@ -46,15 +25,17 @@ const SignUp = () => {
               {...fadeIn[0].animationProps}
               className="max-[1050px]:mt-32 max-[400px]:text-4xl min-[400px]:text-6xl font-extrabold text-center text-[var(--light-yellow)]"
             >
-              Interested?
+              Interessado?
             </motion.h2>
-            <motion.h3
-              ref={fadeIn[1].ref}
-              {...fadeIn[1].animationProps}
-              className="font-bold text-2xl text-[var(--light-yellow)]/75"
-            >
-              Sign Up!
-            </motion.h3>
+            <Link href={"/signup"}>
+              <motion.h3
+                ref={fadeIn[1].ref}
+                {...fadeIn[1].animationProps}
+                className="font-bold text-2xl text-[var(--light-yellow)]/75 underline hover:brightness-150"
+              >
+                Cadastre-se!
+              </motion.h3>
+            </Link>
             <motion.p
               ref={fadeIn[2].ref}
               {...fadeIn[2].animationProps}
@@ -69,45 +50,46 @@ const SignUp = () => {
         </div>
 
         <div
-          className="flex max-[1050px]:w-auto min-[1050px]:w-[50%]  
+          className="flex max-[1050px]:w-full min-[1050px]:w-[50%]  
         items-center h-full justify-center"
         >
           <div className="flex justify-center relative items-center w-full flex-col min-h-[650px]">
-            <div className="w-full h-[620px] flex justify-center items-center p-16 absolute translate-y-2">
+            <div className="w-full flex justify-center items-center absolute translate-y-2 max-[1050px]:translate-y-[8%]">
               <Image
-                width={700}
+                width={800}
                 height={800}
                 alt=""
-                className="object-cover overflow-visible w-full h-full"
+                className="object-cover min-w-[450px] max-w-[450px]"
                 src="/whitefloor.png"
               />
             </div>
-            <div className="z-20 w-full h-full flex flex-col gap-y-6 justify-center items-center ">
-              {input(3, "first", "NAME", "text")}
-              {input(4, "first", "EMAIL", "text")}
-              {input(5, "first", "PASSWORD", "text")}
+
+            <div className="z-20 w-full h-full flex flex-col gap-y-6 justify-center items-center text-center ">
+              <motion.h2
+                ref={fadeIn[3].ref}
+                {...fadeIn[3].animationProps}
+                className="max-[1050px]:mt-32 text-3xl font-extrabold text-[var(--brown)]"
+              >
+                Já tem uma conta?
+              </motion.h2>
+              <Link href={"/login"}>
+                <motion.h3
+                  ref={fadeIn[4].ref}
+                  {...fadeIn[4].animationProps}
+                  className="font-bold text-2xl text-[var(--brown)]/75 underline hover:brightness-150"
+                >
+                  Entre e veja nossos pets!
+                </motion.h3>
+              </Link>
               <motion.p
-                ref={fadeIn[6].ref}
-                {...fadeIn[6].animationProps}
-                className="font-semibold text-[var(--brown)]"
+                ref={fadeIn[5].ref}
+                {...fadeIn[5].animationProps}
+                className="max-w-[300px] text-[var(--light-brown)] w-full"
               >
-                Or
-              </motion.p>
-              <Button
-                ref={fadeIn[7].ref}
-                {...fadeIn[7].animationProps}
-                intent={"secondVar"}
-                className="flex gap-3 justify-center items-center"
-              >
-                <FcGoogle className="w-6 h-6" />
-                Sign up with Google
-              </Button>
-              <motion.p
-                ref={fadeIn[8].ref}
-                {...fadeIn[8].animationProps}
-                className="text-[var(--brown)] text-xl underline cursor-pointer hover:brightness-125 font-bold"
-              >
-                Submit
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                Accusamus, quasi autem? Eveniet delectus exercitationem vel
+                veritatis maiores a, qui architecto sequi perferendis quasi quam
+                ratione magni eum excepturi sit ullam.
               </motion.p>
             </div>
           </div>
