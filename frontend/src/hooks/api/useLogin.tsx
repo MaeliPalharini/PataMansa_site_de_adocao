@@ -1,4 +1,4 @@
-import {loginUser} from "@/libs/api/auth/login";
+import {loginUser} from "@/services/api/auth/login";
 import {useMutation} from "@tanstack/react-query";
 import {useRouter} from "next/navigation";
 

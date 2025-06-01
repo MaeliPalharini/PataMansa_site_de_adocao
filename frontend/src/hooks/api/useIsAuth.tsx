@@ -1,4 +1,4 @@
-import {isAuth} from "@/libs/api/auth/isAuth";
+import {isAuth} from "@/services/api/auth/isAuth";
 import {useQuery} from "@tanstack/react-query";
 
 export const useAuth = () => {

@@ -3,6 +3,7 @@
 import {ReactNode, useEffect} from "react";
 import {useRouter} from "next/navigation";
 import {useAuth} from "@/hooks/api/useIsAuth";
+import LoadingSpinner from "../Loading";
 
 type ProtectedRouteProps = {
   children: ReactNode;
@@ -18,9 +19,12 @@ export default function ProtectedRoute({children}: ProtectedRouteProps) {
     }
   }, [isLoading, user, router]);
 
-  if (isLoading) return <p>Carregando...</p>;
-
-  if (!user) return <p>Redirecionando para login...</p>;
+  if (isLoading || !user)
+    return (
+      <div className="min-h-screen w-full flex justify-center items-center bg-[var(--light-yellow)] text-[var(--brown)]">
+        <LoadingSpinner />
+      </div>
+    );
 
   return <>{children}</>;
 }

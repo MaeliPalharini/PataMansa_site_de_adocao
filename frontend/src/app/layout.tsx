@@ -1,7 +1,7 @@
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import "./globals.css";
-import {ReactQueryProvider} from "@/libs/api/client/reactQuery";
+import {ReactQueryProvider} from "@/services/api/client/reactQuery";
 import {Toaster} from "sonner";
 
 export const metadata = {
