@@ -1,5 +1,5 @@
 import {useUserById} from "@/hooks/api/useUserInfo";
-import {useRouteParam} from "@/hooks/route/useRouteParams";
+import {useRouteParam} from "@/hooks/routes/useRouteParams";
 import React from "react";
 
 const Anunciante = () => {

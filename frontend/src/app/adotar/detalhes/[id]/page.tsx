@@ -5,8 +5,8 @@ import {usePetById} from "@/hooks/api/usePetInfo";
 import Button from "@/ui/button";
 import Image from "next/image";
 import React, {useState} from "react";
-import ProtectedRoute from "@/components/ProtectedRoute";
-import {useRouteParam} from "@/hooks/route/useRouteParams";
+import ProtectedRoute from "@/common/routes/ProtectedRoute";
+import {useRouteParam} from "@/hooks/routes/useRouteParams";
 
 const Detalhes = () => {
   const petId = useRouteParam("id");

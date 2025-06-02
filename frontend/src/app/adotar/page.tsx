@@ -1,7 +1,7 @@
 "use client";
 import Sidebar from "@/components/Adotar/Sidebar";
 import SimpleSlider from "@/components/Adotar/Slides";
-import ProtectedRoute from "@/components/ProtectedRoute";
+import ProtectedRoute from "@/common/routes/ProtectedRoute";
 import Image from "next/image";
 import React, {useState} from "react";
 
