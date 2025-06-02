@@ -13,14 +13,14 @@ const Header = () => {
     <section className="bg-[var(--light-yellow)] flex min-h-screen justify-center items-center w-full px-4">
       <div className="max-w-[1200px] w-full h-full flex flex-grow max-[1050px]:items-end min-[1050px]:justify-end max-[1050px]:justify-center items-center relative min-h-screen">
         <motion.div
-          className="absolute right-1/2 z-10 w-fit -translate-y-[15%] flex justify-center max-[1050px]:w-full items-center max-[1050px]:right-0 max-[1050px]:h-[90vh] min-[1050px]:h-[135vh] top-0"
+          className="absolute right-1/2 z-10 w-fit -translate-y-[10%] flex justify-center max-[1050px]:w-full items-center max-[1050px]:right-0 max-[1050px]:h-[90vh] min-[1050px]:h-[135vh] top-0"
           ref={scaleIn.ref}
           {...scaleIn.animationProps}
         >
           <Image
             width={800}
             src="/start.png"
-            className="object-cover z-10 w-auto h-full"
+            className="object-cover z-10 w-auto h-[550px] scale-125"
             height={900}
             priority
             alt="/"

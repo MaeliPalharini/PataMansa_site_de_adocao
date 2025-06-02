@@ -7,18 +7,20 @@ export default function SimpleSlider() {
   const {data: pets, isLoading, error} = usePetInfo();
 
   return (
-    <div className="w-full max-w-[1000px] max-h-[500px] py-20 max-[800px]:px-2 flex justify-center items-center">
+    <div className="w-full max-w-[1000px] min-h-[500px] max-h-[500px] py-20 max-[800px]:px-2 flex justify-center items-center">
       <div className="overflow-y-auto h-full flex justify-center scroll-container">
         <div className="flex flex-wrap gap-5 w-full items-center justify-center">
-          {isLoading && (
-            <span className="text-center mt-10">Carregando pets...</span>
-          )}
-          {error && (
-            <span className="text-center mt-10">Erro ao carregar pets.</span>
-          )}
-          {!isLoading && !error && pets?.length === 0 && (
-            <span className="text-center mt-10">Nenhum pet encontrado.</span>
-          )}
+          <div className="text-[var(--brown)] text-2xl font-bold">
+            {isLoading && (
+              <span className="text-center mt-10">Carregando pets...</span>
+            )}
+            {error && (
+              <span className="text-center mt-10">Erro ao carregar pets.</span>
+            )}
+            {!isLoading && !error && pets?.length === 0 && (
+              <span className="text-center mt-10">Nenhum pet encontrado.</span>
+            )}
+          </div>
 
           {!isLoading &&
             !error &&

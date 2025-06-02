@@ -12,6 +12,10 @@
   --brown-fosco: #b99b5b;
 }
 
+.body-no-scroll {
+  overflow: hidden;
+}
+
 .scroll-container::-webkit-scrollbar {
   height: 8px;
   width: 12px;

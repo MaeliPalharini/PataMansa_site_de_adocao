@@ -37,9 +37,11 @@ const Detalhes = () => {
             <div className="text-[var(--light-brown)] flex justify-between py-6 gap-2 min-[800px]:w-[60%] items-center flex-col">
               <h2 className="text-4xl text-[var(--dark-yellow)]">{pet.nome}</h2>
               <div className="flex flex-col justify-center items-start gap-2 w-[70%]">
-                {isLoading && <p>Carregando...</p>}
-                {error && <p>Erro ao carregar dados do pet.</p>}
-                {!isLoading && !error && !pet && <p>Pet não encontrado.</p>}
+                <div className="text-[var(--brown)] text-2xl font-bold">
+                  {isLoading && <p>Carregando...</p>}
+                  {error && <p>Erro ao carregar dados do pet.</p>}
+                  {!isLoading && !error && !pet && <p>Pet não encontrado.</p>}
+                </div>
                 {!isLoading && !error && pet && (
                   <>
                     {span("Raça", pet.raca)}
