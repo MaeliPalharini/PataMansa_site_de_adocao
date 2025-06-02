@@ -3,7 +3,7 @@ import Input from "@/ui/input";
 import React, {useState} from "react";
 import AuthLayout from "../AuthLayout";
 import {useLogin} from "@/hooks/api/useLogin";
-import {toast} from "sonner";
+import {toast} from "@/ui/CustomToaster";
 
 const Login = () => {
   const {mutate, isPending, error} = useLogin();

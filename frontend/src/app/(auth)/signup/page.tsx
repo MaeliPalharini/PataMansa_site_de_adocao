@@ -4,7 +4,7 @@ import AuthLayout from "../AuthLayout";
 import Input from "@/ui/input";
 import {useSignup} from "@/hooks/api/useRegister";
 import Button from "@/ui/button";
-import {toast} from "sonner";
+import {toast} from "@/ui/CustomToaster";
 
 const SignUp = () => {
   const {mutate, isPending, error} = useSignup();

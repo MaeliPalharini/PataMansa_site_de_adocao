@@ -2,7 +2,7 @@ import Footer from "@/common/layouts/Footer";
 import Navbar from "@/common/layouts/Navbar";
 import "./globals.css";
 import {ReactQueryProvider} from "@/services/api/client/reactQuery";
-import {Toaster} from "sonner";
+import {CustomToaster} from "@/ui/CustomToaster";
 
 export const metadata = {
   title: "petMansa",
@@ -14,7 +14,7 @@ const RootLayout = ({children}: {children: React.ReactNode}) => {
       <body className="relative">
         <ReactQueryProvider>
           <Navbar />
-          <Toaster richColors position="top-right" />
+          <CustomToaster />
           <main>{children}</main>
           <Footer />
         </ReactQueryProvider>
