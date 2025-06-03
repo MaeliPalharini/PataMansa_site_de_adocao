@@ -6,8 +6,11 @@ import React, {useEffect, useState} from "react";
 import {MdLogout} from "react-icons/md";
 import {HiMenuAlt3} from "react-icons/hi";
 import {IoCloseSharp} from "react-icons/io5";
+import {useLogout} from "@/hooks/api/useLogout";
 
 const Navbar = () => {
+  const {mutate: logout} = useLogout();
+
   const links = [
     {name: "Home", href: "/"},
     {name: "Sobre nós", href: "/sobre"},
@@ -48,10 +51,14 @@ const Navbar = () => {
               </li>
             ))}
           >
-            <li>
+            <li
+              className="flex text-[var(--yellow)] justify-center items-center gap-1"
+              onClick={() => logout()}
+            >
+              <span>Sair</span>
               <MdLogout
-                className="text-[var(--yellow)] cursor-pointer hover:brightness-150"
-                size={25}
+                className=" cursor-pointer hover:brightness-150"
+                size={20}
               />
             </li>
           </AuthSwitch>
