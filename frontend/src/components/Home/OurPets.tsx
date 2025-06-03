@@ -1,4 +1,5 @@
 "use client";
+import {usePetInfo} from "@/hooks/api/usePetInfo";
 import {useFadeIn} from "@/hooks/ui/useFadeIn";
 import Button from "@/ui/button";
 import {motion} from "framer-motion";
@@ -7,35 +8,64 @@ import React from "react";
 
 const OurPets = () => {
   const fadeIn = [useFadeIn(), useFadeIn(), useFadeIn(), useFadeIn()];
+  const {data: pets, isLoading, isError} = usePetInfo();
 
-  const pets = (
-    n: number,
-    classname: string,
-    intent: "first" | "second" | "third" | "fourth" | "secondVar",
-    name?: string,
-    picture?: string
-  ) => {
+  const petIntents: ("fourth" | "secondVar" | "third")[] = [
+    "fourth",
+    "secondVar",
+    "third",
+  ];
+
+  const bgColors = [
+    "bg-[var(--dark-yellow)]",
+    "bg-[var(--brown)]",
+    "bg-[var(--dark-yellow)]",
+  ];
+
+  const renderPet = (index: number) => {
+    const fade = fadeIn[index + 1];
+    const pet = pets?.[index];
+    const hasError = !pet && isError;
+
+    const name = isLoading
+      ? "Carregando..."
+      : hasError
+      ? "Sem resultados"
+      : pet?.nome ?? "Sem nome";
+
+    const picture =
+      isLoading || hasError ? null : pet?.fotoUrl ?? "/defaultdog.png";
+
     return (
-      <>
-        <motion.div
-          ref={fadeIn[n].ref}
-          {...fadeIn[n].animationProps}
-          className="flex justify-center items-center flex-col gap-6"
+      <motion.div
+        key={pet?.id ?? index}
+        ref={fade.ref}
+        {...fade.animationProps}
+        className="flex justify-center items-center flex-col gap-6"
+      >
+        <div
+          className={`${bgColors[index]} rounded-full items-center justify-center flex flex-col gap-y-5 w-[250px] h-[250px] overflow-hidden`}
         >
-          <div
-            className={`${classname} rounded-full items-center justify-center flex flex-col gap-y-5 w-[250px] h-[250px]`}
-          >
+          {isLoading ? (
+            <div className="w-full h-full flex items-center justify-center text-white text-2xl font-bold">
+              ...
+            </div>
+          ) : hasError ? (
+            <div className="w-full h-full flex items-center justify-center text-white text-center px-4 font-semibold">
+              Não encontrado
+            </div>
+          ) : (
             <Image
-              src={picture ?? "/bone.png"}
+              src={picture}
               width={800}
               height={800}
-              className="w-full h-full"
-              alt=""
+              className="w-full h-full object-cover rounded-full"
+              alt={name}
             />
-          </div>
-          <Button intent={intent}>{name ?? "pet"}</Button>
-        </motion.div>
-      </>
+          )}
+        </div>
+        <Button intent={petIntents[index]}>{name}</Button>
+      </motion.div>
     );
   };
 
@@ -49,10 +79,9 @@ const OurPets = () => {
         >
           Nossos Pets
         </motion.h2>
+
         <div className="flex gap-6 flex-wrap justify-center items-center">
-          {pets(1, "bg-[var(--dark-yellow)]", "fourth")}
-          {pets(2, "bg-[var(--brown)]", "secondVar")}
-          {pets(3, "bg-[var(--dark-yellow)]", "third")}
+          {[0, 1, 2].map((i) => renderPet(i))}
         </div>
       </div>
     </section>
