@@ -6,17 +6,38 @@ import {IoIosCloseCircleOutline} from "react-icons/io";
 const Sidebar = ({
   isOpen,
   setIsOpen,
+  filters,
+  setFilters,
 }: {
   isOpen: boolean;
   setIsOpen: (value: boolean) => void;
+  filters: Record<string, string[]>;
+  setFilters: React.Dispatch<React.SetStateAction<Record<string, string[]>>>;
 }) => {
+  const toggleFilter = (category: string, value: string) => {
+    setFilters((prev) => {
+      const categoryValues = prev[category] ?? [];
+      const alreadySelected = categoryValues.includes(value);
+      return {
+        ...prev,
+        [category]: alreadySelected
+          ? categoryValues.filter((v) => v !== value)
+          : [...categoryValues, value],
+      };
+    });
+  };
+
   const filter = (category: string, value: string, name: string) => {
+    const isChecked = filters[category]?.includes(value) ?? false;
+
     return (
       <Checkbox
         intent="first"
         name={category}
         value={value}
         displayName={name}
+        checked={isChecked}
+        onChange={() => toggleFilter(category, value)}
       />
     );
   };
@@ -24,11 +45,12 @@ const Sidebar = ({
   const filterBar = (
     <>
       <h2 className="text-4xl my-4 text-[var(--light-yellow)]">Filtros</h2>
+
       <div className="flex flex-col gap-2 w-full">
         <p className="font-semibold text-left">Tamanho</p>
         <div className="flex flex-col gap-1 items-start">
           {filter("size", "small", "pequeno")}
-          {filter("size", "medium", "medio")}
+          {filter("size", "medium", "médio")}
           {filter("size", "large", "grande")}
         </div>
       </div>
@@ -61,7 +83,7 @@ const Sidebar = ({
 
       {isOpen && (
         <div
-          className="bg-[var(--brown)] w-full max-w-[200px] p-4 max-h-[500px] absolute left-0 z-20 h-full max-[448px]:min-w-full "
+          className="bg-[var(--brown)] w-full max-w-[200px] p-4 max-h-[500px] absolute left-0 z-20 h-full max-[448px]:min-w-full"
           onClick={(e) => e.stopPropagation()}
         >
           <div className="w-full h-full relative flex justify-start max-[448px]:items-center gap-6 flex-col">

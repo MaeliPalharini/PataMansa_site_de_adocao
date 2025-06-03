@@ -25,9 +25,15 @@ type CheckboxProps = React.InputHTMLAttributes<HTMLInputElement> &
 const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
   ({className, displayclassName, intent, displayName, ...props}, ref) => {
     return (
-      <label className="flex items-center justify-center space-x-2 cursor-pointer">
+      <label
+        htmlFor={props.id}
+        className="flex items-center justify-center space-x-2 cursor-pointer"
+      >
         <input
           type="checkbox"
+          role="checkbox"
+          id={props.id}
+          aria-checked={props.checked}
           ref={ref}
           className={cn("peer hidden", className)}
           {...props}

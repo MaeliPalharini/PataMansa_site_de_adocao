@@ -1,13 +1,10 @@
 "use client";
-import Sidebar from "@/components/Adotar/Sidebar";
 import SimpleSlider from "@/components/Adotar/Slides";
 import ProtectedRoute from "@/common/routes/ProtectedRoute";
 import Image from "next/image";
-import React, {useState} from "react";
+import React from "react";
 
 const Adotar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
   return (
     <ProtectedRoute>
       <div className="min-h-screen flex justify-center py-20 flex-col items-center relative bg-[var(--light-yellow)] ">
@@ -22,13 +19,7 @@ const Adotar = () => {
             className="w-[200px] h-auto absolute right-0 top-8 -translate-x-[10%]"
             alt=""
           />
-          <div
-            className="w-full rounded-lg overflow-hidden bg-[var(--light-brown)]/50 h-full flex justify-center"
-            onClick={() => isOpen && setIsOpen(false)}
-          >
-            <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
-            <SimpleSlider />
-          </div>
+          <SimpleSlider />
         </div>
       </div>
     </ProtectedRoute>
