@@ -36,4 +36,8 @@ public class RegisterRequest {
     public void setRole(String role) {
         this.role = role;
     }
+
+    public String getEmail() {
+        return null;
+    }
 }

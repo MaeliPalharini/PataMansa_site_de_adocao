@@ -12,6 +12,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+
+
 @Service
 public class AuthenticationService {
 
@@ -28,6 +30,11 @@ public class AuthenticationService {
     private AuthenticationManager authenticationManager;
 
     public LoginResponse register(RegisterRequest request) {
+
+        if (userRepository.findByEmail(request.getUserEmail()).isPresent()) {
+            throw new RuntimeException("Esse e-mail já está cadastrado!");
+        }
+
         User user = new User();
         user.setName(request.getNome());
         user.setEmail(request.getUserEmail());
