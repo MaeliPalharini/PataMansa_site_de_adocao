@@ -1,5 +1,9 @@
 [build]
 base = "backend"
+builder = "NIXPACKS"
+
+[start]
+cmd = "./mvnw spring-boot:run"
 
 
 
