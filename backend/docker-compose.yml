@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+
+  db:
+    container_name: postgres-patamansa
+    image: postgres:alpine
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: patamansa
+    ports:
+      - "5432:5432"
+    volumes:
+      - patamansa-data:/var/lib/postgresql/data
+    networks:
+      - patamansa-network
+
+  pgadmin:
+    container_name: pgadmin4
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    ports:
+      - "15432:80"
+    networks:
+      - patamansa-network
+
+networks:
+  patamansa-network:
+    driver: bridge
+
+volumes:
+  patamansa-data:
