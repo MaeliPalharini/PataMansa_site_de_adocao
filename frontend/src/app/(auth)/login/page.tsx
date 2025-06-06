@@ -3,7 +3,6 @@ import Input from "@/ui/input";
 import React, {useState} from "react";
 import AuthLayout from "../AuthLayout";
 import {useLogin} from "@/hooks/api/useLogin";
-import {toast} from "@/ui/CustomToaster";
 import {createHandleSubmit} from "@/hooks/forms/handleSubmit";
 import {createHandleChange} from "@/hooks/forms/handleChange";
 

@@ -15,6 +15,8 @@ const buttonVariants = cva(
         secondVar: "bg-[var(--brown)] text-white]",
         formulario:
           "mt-4 bg-[var(--brown)] text-white py-2 px-4 rounded hover:opacity-90",
+        painel:
+          "bg-amber-100 border border-amber-600 text-amber-800 px-4 py-2 rounded-lg disabled:opacity-50 hover:bg-amber-300 hover:brightness-100",
       },
     },
   }

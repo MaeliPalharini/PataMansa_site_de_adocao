@@ -2,7 +2,7 @@ import {usePetInfo} from "@/hooks/api/usePetInfo";
 import Button from "@/ui/button";
 import Image from "next/image";
 import Link from "next/link";
-import {useState} from "react";
+import {useMemo, useState} from "react";
 import Sidebar from "./Sidebar";
 
 export default function SimpleSlider() {
@@ -19,7 +19,11 @@ export default function SimpleSlider() {
     return sizeMatch && ageMatch;
   };
 
-  const filteredPets = pets?.filter(applyFilters);
+  const filteredPets = useMemo(() => {
+    return pets
+      ?.filter((pet: any) => pet.status?.toLowerCase() === "disponivel")
+      ?.filter(applyFilters);
+  }, [pets, filters]);
 
   return (
     <div

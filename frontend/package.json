@@ -5,8 +5,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "start": "concurrently \"npm run front\" \"npm run back\"",
+    "front": "next dev",
+    "back": "cd ../backend && mvnw.cmd spring-boot:run"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.79.0",
