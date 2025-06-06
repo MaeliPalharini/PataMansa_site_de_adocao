@@ -26,8 +26,10 @@ const SignUp = () => {
       !signUp.role
     ) {
       toast.error("Credenciais inválidas");
-      return;
+      return false;
     }
+
+    return true;
   });
 
   const handleChange = createHandleChange(setSignUp);
