@@ -7,6 +7,7 @@ interface Dog {
   id: string;
   name: string;
   age: number;
+  ownerId: string;
   breed: string;
   weight: number;
   temperament: string;
@@ -23,6 +24,7 @@ const mockDogs: Dog[] = [
   {
     id: "1",
     name: "Rex",
+    ownerId: "yes",
     age: 3,
     breed: "Golden Retriever",
     weight: 25,
@@ -31,12 +33,12 @@ const mockDogs: Dog[] = [
       "https://images.unsplash.com/photo-1552053831-71594a27632d?w=400&h=400&fit=crop",
     adoptionDate: "2024-05-15",
     location: "São Paulo, SP",
-    // Removido adoptedBy
     description: "Rex é um cão muito carinhoso e brincalhão...",
     status: "adopted",
   },
   {
     id: "2",
+    ownerId: "yes",
     name: "Luna",
     age: 2,
     breed: "Border Collie",
@@ -51,6 +53,7 @@ const mockDogs: Dog[] = [
   },
   {
     id: "3",
+    ownerId: "yes",
     name: "Thor",
     age: 5,
     breed: "Pastor Alemão",
@@ -65,6 +68,7 @@ const mockDogs: Dog[] = [
   },
   {
     id: "4",
+    ownerId: "yes",
     name: "Bella",
     age: 1,
     breed: "Labrador",
@@ -79,6 +83,7 @@ const mockDogs: Dog[] = [
   },
   {
     id: "5",
+    ownerId: "yes",
     name: "Max",
     age: 4,
     breed: "Bulldog Francês",

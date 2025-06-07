@@ -1,6 +1,6 @@
 "use client";
 
-import AuthSwitch from "@/hooks/api/authSwitch";
+import AuthSwitch from "@/hooks/api/useAuthSwitch";
 import Link from "next/link";
 import React, {useEffect, useState} from "react";
 import {MdLogout} from "react-icons/md";
