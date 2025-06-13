@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://${PG_HOST}:${PG_PORT}/${PG_DATABASE}
+    username: ${PG_USER}
+    password: ${PG_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+  flyway:
+    enabled: true
+    baselineOnMigrate: true
+
+server:
+  error:
+    include-message: always
+    include-binding-errors: always
+
+agenda:
+  api:
+    security:
+      token:
+        secret: chave_secreta_agenda_api

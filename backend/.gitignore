@@ -39,3 +39,6 @@ Thumbs.db
 # Arquivos temporários do editor
 *.swp
 *.tmp
+
+# Evitar arquivos locais sensíveis
+src/main/resources/application-local.yml
