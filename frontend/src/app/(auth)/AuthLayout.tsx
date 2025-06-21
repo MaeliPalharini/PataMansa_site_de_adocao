@@ -1,7 +1,7 @@
 "use client";
 import {useOAuth} from "@/hooks/api/auth/useOAuth";
 import Button from "@/ui/button";
-import {toast} from "@/ui/customToaster";
+import {toast} from "@/ui/CustomToaster";
 import {fadeIn} from "@/ui/motionVariants";
 import {motion} from "framer-motion";
 import Image from "next/image";

@@ -4,7 +4,7 @@ import AuthLayout from "../AuthLayout";
 import Input from "@/ui/input";
 import {useSignup} from "@/hooks/api/auth/useRegister";
 import Button from "@/ui/button";
-import {toast} from "@/ui/customToaster";
+import {toast} from "@/ui/CustomToaster";
 import {useForm} from "react-hook-form";
 
 import {zodResolver} from "@hookform/resolvers/zod";

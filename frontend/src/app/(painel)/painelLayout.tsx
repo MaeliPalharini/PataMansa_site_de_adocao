@@ -3,7 +3,7 @@
 import React, {useState, useEffect, useMemo, useCallback} from "react";
 import {motion, AnimatePresence} from "framer-motion";
 import {FaHeart, FaMapMarkerAlt, FaCalendarAlt, FaPlus} from "react-icons/fa";
-import {toast} from "@/ui/customToaster";
+import {toast} from "@/ui/CustomToaster";
 import {PetInfos} from "@/types/pet";
 import Button from "@/ui/button";
 import {

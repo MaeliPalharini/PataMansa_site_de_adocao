@@ -1,7 +1,7 @@
 import React from "react";
 import {useFormulario} from "@/hooks/api/formulario/useFormulario";
 import {FormSchema, formulario} from "@/schemas/formulario";
-import {toast} from "@/ui/customToaster";
+import {toast} from "@/ui/CustomToaster";
 import {IoClose} from "react-icons/io5";
 import {FormularioWrapper} from "@/hooks/components/useModal";
 import FormField from "../../common/components/FormField";

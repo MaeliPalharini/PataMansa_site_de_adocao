@@ -5,7 +5,7 @@ import AuthLayout from "../AuthLayout";
 import {useLogin} from "@/hooks/api/auth/useLogin";
 import {useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
-import {toast} from "@/ui/customToaster";
+import {toast} from "@/ui/CustomToaster";
 import {LoginSchema, loginSchema} from "@/schemas/auth";
 import {createHandleSubmit} from "@/hooks/forms/handleUseFormSubmit";
 
