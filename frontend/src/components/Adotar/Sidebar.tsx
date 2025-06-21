@@ -1,4 +1,3 @@
-// Sidebar.tsx
 "use client";
 
 import Checkbox from "@/ui/checkbox";
