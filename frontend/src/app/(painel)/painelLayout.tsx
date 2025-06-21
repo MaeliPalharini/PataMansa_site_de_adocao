@@ -3,7 +3,7 @@
 import React, {useState, useEffect, useMemo, useCallback} from "react";
 import {motion, AnimatePresence} from "framer-motion";
 import {FaHeart, FaMapMarkerAlt, FaCalendarAlt, FaPlus} from "react-icons/fa";
-import {toast} from "@/ui/CustomToaster";
+import {toast} from "@/ui/customToaster";
 import {PetInfos} from "@/types/pet";
 import Button from "@/ui/button";
 import {
@@ -15,6 +15,12 @@ import {usePetsByClient} from "@/hooks/api/user/useAdotante";
 import ProtectedRoute from "@/common/routes/ProtectedRoute";
 import Image from "next/image";
 import Modal from "@/components/Anunciante/modal";
+import {
+  listSectionVariants,
+  detailSectionVariants,
+  dogItemVariants,
+  getDogItemTransition,
+} from "@/ui/motionVariants";
 
 interface AdoptionPanelProps {
   type: "adopter" | "advertiser";
@@ -192,10 +198,11 @@ const AdoptionPanel: React.FC<AdoptionPanelProps> = ({type, userId}) => {
 
           <div className="flex max-[735px]:flex-col gap-6 overflow-hidden min-[735px]:max-h-[555px] justify-center max-[735px]:items-center">
             <motion.section
-              className="w-full lg:w-5/12 flex flex-col bg-white rounded-lg shadow-lg overflow-hidden max-w-[500px] max-[735px]:max-h-[45vh] "
-              initial={{x: -100, opacity: 0}}
-              animate={{x: 0, opacity: 1}}
-              transition={{duration: 0.5}}
+              className="w-full lg:w-5/12 flex flex-col bg-white rounded-lg shadow-lg overflow-hidden max-w-[500px] max-[735px]:max-h-[45vh]"
+              variants={listSectionVariants}
+              initial="initial"
+              animate="animate"
+              transition={listSectionVariants.transition}
             >
               <div className="p-6 border-b flex-shrink-0">
                 <h2 className="flex items-center gap-2 text-xl font-semibold text-gray-800">
@@ -214,16 +221,17 @@ const AdoptionPanel: React.FC<AdoptionPanelProps> = ({type, userId}) => {
                   )}
                 </h2>
               </div>
-              <div className="flex-1 overflow-y-auto p-4 ">
+              <div className="flex-1 overflow-y-auto p-4">
                 {sortedDataDogs.length > 0 ? (
                   <AnimatePresence>
                     {sortedDataDogs.map((dog, index) => (
                       <motion.div
                         key={dog.id}
-                        initial={{y: 50, opacity: 0}}
-                        animate={{y: 0, opacity: 1}}
-                        exit={{opacity: 0, y: 20}}
-                        transition={{delay: index * 0.05}}
+                        variants={dogItemVariants}
+                        initial="initial"
+                        animate="animate"
+                        exit="exit"
+                        transition={getDogItemTransition(index)}
                         className={`p-4 rounded-lg border cursor-pointer transition-all hover:shadow-md ${
                           selectedDog?.id === dog.id
                             ? "border-indigo-500 bg-indigo-50 shadow-sm"
@@ -266,9 +274,10 @@ const AdoptionPanel: React.FC<AdoptionPanelProps> = ({type, userId}) => {
 
             <motion.section
               className="w-full max-w-[500px] flex flex-col min-h-[555px] bg-white rounded-lg  shadow-lg overflow-y-auto"
-              initial={{x: 100, opacity: 0}}
-              animate={{x: 0, opacity: 1}}
-              transition={{duration: 0.5}}
+              variants={detailSectionVariants}
+              initial="initial"
+              animate="animate"
+              transition={detailSectionVariants.transition}
             >
               {selectedDog ? (
                 <div className="p-8 flex flex-col h-full">

@@ -55,18 +55,18 @@ const Sidebar: React.FC<SidebarProps> = ({
       <div className="flex flex-col gap-2 w-full">
         <p className="font-semibold text-left">Tamanho</p>
         <div className="flex flex-col gap-1 items-start">
-          {filter("size", "pequeno", "pequeno")}
-          {filter("size", "médio", "médio")}
-          {filter("size", "grande", "grande")}
+          {filter("size", "pequeno", "Pequeno")}
+          {filter("size", "médio", "Médio")}
+          {filter("size", "grande", "Grande")}
         </div>
       </div>
 
       <div className="flex flex-col gap-2 w-full">
         <p className="font-semibold text-left">Idade</p>
         <div className="flex flex-col gap-1 items-start">
-          {filter("age", "menos1", "menos de 1 ano")}
-          {filter("age", "1a5", "entre 1 a 5 anos")}
-          {filter("age", "mais5", "mais de 5 anos")}
+          {filter("age", "menos1", "Menos de 1 ano")}
+          {filter("age", "1a5", "Entre 1 a 5 anos")}
+          {filter("age", "mais5", "Mais de 5 anos")}
         </div>
       </div>
     </>
@@ -87,21 +87,23 @@ const Sidebar: React.FC<SidebarProps> = ({
         </button>
       </div>
 
-      {isOpen && (
-        <div
-          className="bg-[var(--brown)] w-full max-w-[200px] p-4 max-h-[500px] absolute left-0 z-20 h-full max-[448px]:min-w-full"
-          onClick={(e) => e.stopPropagation()}
-        >
-          <div className="w-full h-full relative flex justify-start max-[448px]:items-center gap-6 flex-col">
-            <IoIosCloseCircleOutline
-              onClick={() => setIsOpen(false)}
-              className="absolute hover:brightness-125 cursor-pointer right-0 text-[var(--light-yellow)] top-0"
-              size={28}
-            />
-            {filterBar}
-          </div>
+      <div
+        className={`bg-[var(--brown)] w-full max-w-[200px] p-4 max-h-[500px] absolute left-0 z-20 h-full max-[448px]:min-w-full transition duration-250 ease-in-out ${
+          isOpen
+            ? "opacity-100 translate-x-0 pointer-events-auto"
+            : "opacity-0 -translate-x-full pointer-events-none"
+        } `}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="w-full h-full relative flex justify-start max-[448px]:items-center gap-6 flex-col">
+          <IoIosCloseCircleOutline
+            onClick={() => setIsOpen(false)}
+            className="absolute hover:brightness-125 cursor-pointer right-0 text-[var(--light-yellow)] top-0"
+            size={28}
+          />
+          {filterBar}
         </div>
-      )}
+      </div>
     </>
   );
 };

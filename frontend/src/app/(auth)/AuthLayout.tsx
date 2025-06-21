@@ -1,8 +1,8 @@
 "use client";
 import {useOAuth} from "@/hooks/api/auth/useOAuth";
-import {useScaleIn} from "@/hooks/ui/useScaleIn";
 import Button from "@/ui/button";
-import {toast} from "@/ui/CustomToaster";
+import {toast} from "@/ui/customToaster";
+import {fadeIn} from "@/ui/motionVariants";
 import {motion} from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -22,8 +22,6 @@ export default function AuthLayout({
   isLoading?: boolean;
   isError?: boolean | null;
 }) {
-  const scaleIn = useScaleIn();
-
   const {handleOAuth, isLoading: loadingGoogle} = useOAuth();
 
   useEffect(() => {
@@ -54,8 +52,9 @@ export default function AuthLayout({
 
         <div className="min-[500px]:w-auto w-full flex justify-center items-center">
           <motion.div
-            ref={scaleIn.ref}
-            {...scaleIn.animationProps}
+            variants={fadeIn}
+            initial="initial"
+            animate="animate"
             className="w-full flex max-[500px]:min-h-screen flex-col gap-2 justify-center items-center backdrop-blur-[1px] min-[500px]:px-10 max-[500px]:px-2 py-6 backdrop-brightness-80 bg-[var(--light-brown)]/50 backdrop-saturate-150 min-[500px]:rounded-3xl shadow-lg"
           >
             <h2 className="text-white text-3xl font-semibold py-4">

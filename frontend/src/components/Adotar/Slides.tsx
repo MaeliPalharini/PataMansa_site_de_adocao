@@ -63,9 +63,9 @@ export default function SimpleSlider() {
           setFilters={setFilters}
         />
 
-        <div className="w-full max-w-[1000px] min-h-[500px] max-h-[500px] py-20 max-[800px]:px-2 flex justify-center items-center">
-          <div className="overflow-y-auto h-full flex justify-center scroll-container">
-            <div className="flex flex-wrap gap-5 w-full items-center justify-center">
+        <div className="w-full max-w-[1000px] min-h-[520px] max-h-[520px] py-20 max-[800px]:px-2 flex justify-center items-center">
+          <div className="overflow-y-auto h-full flex justify-center scroll-container ">
+            <div className="flex flex-wrap items-center justify-center">
               <div className="text-[var(--brown)] text-2xl font-bold">
                 {isLoading && <span>Carregando pets...</span>}
                 {error && <span>Erro ao carregar pets.</span>}
@@ -83,7 +83,7 @@ export default function SimpleSlider() {
                     exit={{opacity: 0, y: 20}}
                     transition={{delay: index * 0.05}}
                     key={index}
-                    className="bg-[var(--light-yellow)] h-[340px] w-[200px] flex flex-col justify-center items-center shadow rounded overflow-hidden"
+                    className="bg-[var(--light-yellow)] h-[340px] w-[200px] flex flex-col justify-center items-center shadow rounded overflow-hidden m-2"
                   >
                     <div className="relative h-[65%] w-full">
                       <Image
